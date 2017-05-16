@@ -1,0 +1,43 @@
+﻿@model E_commerce.Models.Categoria
+
+@{        
+    ViewBag.Title = "Details";
+}
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoriaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Detalhes da Categoria</h4>
+        </div>
+        <div class="modal-body">
+            <p>@Html.DisplayFor(model => model.Nome)</p>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Index", "Categorias")" class="btn btn-primary" data-dismiss="modal">Fechar</a>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+
