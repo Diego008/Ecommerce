@@ -1,0 +1,217 @@
+﻿@model Ecommerce.Models.Usuario
+
+@{
+    ViewBag.Title = "Usuario";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken();
+
+    @*<div class="row">*@
+    <form class="form-horizontal form-event">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row form-group form">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Nome, htmlAttributes: new { id = "txtNome", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row form-group">
+            @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Cpf, htmlAttributes: new { id = "txtCpf", @class = "form-control" })
+            </div>
+
+            @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Rg, htmlAttributes: new { id = "txtRg", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row form-group">
+            @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Cep, htmlAttributes: new { id = "txtCep", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row form-group">
+            @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+
+            <div class="col-sm-3 inputEnd">
+                @Html.TextBoxFor(model => model.Endereco, htmlAttributes: new { id = "txtEnd", @class = "form-control" })
+            </div>
+
+            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3 inputNum">
+                @Html.TextBoxFor(model => model.Numero, htmlAttributes: new { id = "txtNumero", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row form-group">
+            @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Bairro, htmlAttributes: new { id = "txtBairro", @class = "form-control" })
+            </div>
+            @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Cidade, htmlAttributes: new { id = "txtCidade", @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row form-group">
+            @Html.LabelFor(model => model.Contato, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+
+            <div class="col-sm-3">
+                @Html.TextBoxFor(model => model.Contato, htmlAttributes: new { id = "txtContato", @class = "form-control" })
+            </div>
+
+            <div class="col-sm-3">
+                <input id="btnSalvarContato" type="button" class="btn btn-success" value="+" />
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-sm-6 col-sm-offset-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Contatos Adicionados</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row form-group form">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email" })
+            </div>
+        </div>
+        <div class="row form-group form">
+            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Senha, htmlAttributes: new { id = "txtSenha", @class = "form-control", @type = "password", onkeyup = "checkPassword()" })
+                <p><label id="strenghPassword" class="control-label"></label></p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <label class="control-label col-sm-2 col-sm-offset-1">Selecionar Imagem</label>
+            @Html.TextBoxFor(model => model.Imagem, htmlAttributes: new { @type = "file", id = "txtImagem", @class = "input-file" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-primary" value="Cadastrar" onclick="sendController()">
+            </div>
+        </div>
+    </form>
+}
+
+@section scripts{
+    <script>
+        var campos = [
+            document.querySelector("#txtContato")
+        ];
+
+        console.log(campos);
+
+        var tbody = document.querySelector('table tbody');
+
+        var el = document.querySelector("#btnSalvarContato");
+        if (el) {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var tr = document.createElement('tr');
+
+                campos.forEach(function (campo) {
+                    var td = document.createElement('td');
+                    td.textContent = campo.value;
+                    td.className = "contatos";
+                    tr.appendChild(td);
+                });
+
+                var tdExcluir = document.createElement('td');
+                var btExcluir = document.createElement('input');
+                btExcluir.setAttribute('type', 'button');
+                btExcluir.value = 'Excluir';
+                btExcluir.className = 'btn btn-success';
+
+                tdExcluir.appendChild(btExcluir);
+                tdExcluir.style.width = '200px';
+                tr.appendChild(tdExcluir);
+
+                tbody.appendChild(tr);
+
+                campos[0].value = '';
+
+                btExcluir.onclick = function () {
+                    var opcao = confirm('Tem certeza que deseja excluir esta Linha?');
+
+                    if (opcao == true) {
+                        tbody.removeChild(tr);
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function sendController() {
+            var array = new Array();
+            var tds = document.getElementsByClassName("contatos");
+
+            for (var i = 0; i < tds.length; i++) {
+                array.push(tds[i].innerHTML);
+            }
+
+            //alert(array);
+
+            //enviando dados para controller
+            
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: '@Url.Action("SaveContact", "Usuarios")',
+                datatype: "json",
+                data: {contatos: array}
+            });
+
+        }
+    </script>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("txtSenha").value;
+
+            if(password.length == 0){
+                document.getElementById("strenghPassword").innerHtml = "";
+            }else if(password.length <= 6){
+                document.getElementById("strenghPassword").innerHTML = "Senha Fraca";
+                document.getElementById("strenghPassword").className = "label label-danger";
+            } else {
+                document.getElementById("strenghPassword").innerHTML = "Senha Forte";
+                document.getElementById("strenghPassword").className = "label label-success";
+            }
+        }
+    </script>
+}
+
+
+
+

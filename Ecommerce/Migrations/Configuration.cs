@@ -10,6 +10,7 @@ namespace Ecommerce.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(E_commerce.Models.Context context)
