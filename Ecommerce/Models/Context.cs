@@ -27,6 +27,8 @@ namespace E_commerce.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        public System.Data.Entity.DbSet<Ecommerce.Models.Admin> Admins { get; set; }
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);
