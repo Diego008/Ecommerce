@@ -1,6 +1,8 @@
 namespace Ecommerce.Migrations
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -15,6 +17,9 @@ namespace Ecommerce.Migrations
 
         protected override void Seed(E_commerce.Models.Context context)
         {
+            //IList<Admin> admin = new List<Admin>();
+
+            //admin.Add(new Admin() { });
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

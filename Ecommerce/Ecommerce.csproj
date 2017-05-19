@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201705181550196_Admin.Designer.cs">
       <DependentUpon>201705181550196_Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705182218380_Admin1.cs" />
+    <Compile Include="Migrations\201705182218380_Admin1.Designer.cs">
+      <DependentUpon>201705182218380_Admin1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Categoria.cs" />
@@ -197,7 +201,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Usuario.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Categorias\Create.cshtml" />
@@ -210,10 +213,13 @@
     <Content Include="Views\Admins\Details.cshtml" />
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705181550196_Admin.resx">
       <DependentUpon>201705181550196_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705182218380_Admin1.resx">
+      <DependentUpon>201705182218380_Admin1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

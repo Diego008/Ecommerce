@@ -69,3 +69,4 @@ C:\Users\Diego Augusto\Documents\Trabalhos Diego\Ecommerce\Ecommerce\obj\Debug\E
 C:\Users\Diego Augusto\Documents\Trabalhos Diego\Ecommerce\Ecommerce\obj\Debug\Ecommerce.dll
 C:\Users\Diego Augusto\Documents\Trabalhos Diego\Ecommerce\Ecommerce\obj\Debug\Ecommerce.pdb
 C:\Users\Diego Augusto\Documents\Trabalhos Diego\Ecommerce\Ecommerce\obj\Debug\Ecommerce.Migrations.Admin.resources
+C:\Users\Diego Augusto\Documents\Trabalhos Diego\Ecommerce\Ecommerce\obj\Debug\Ecommerce.Migrations.Admin1.resources

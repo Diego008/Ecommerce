@@ -19,20 +19,13 @@ namespace E_commerce.Models
         }
         
         public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }        
+        public DbSet<Admin> Admins { get; set; }
        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
-
-        public System.Data.Entity.DbSet<Ecommerce.Models.Admin> Admins { get; set; }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    modelBuilder.HasDefaultSchema("ecommerce");
-        //}
+        }        
     }
 }

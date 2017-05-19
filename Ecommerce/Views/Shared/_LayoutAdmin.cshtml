@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Admin Manager</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
     <link href="~/Content/Estilo.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -23,16 +23,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Cadastrar", "Create", "Usuarios")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Admins")</li>
+                    <li>@Html.ActionLink("Categoria", "Index", "Categorias")</li>
+                    <li>@Html.ActionLink("Produtos", "", "")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="row">
-        <img src='@Url.Content("~/Content/Images/banner.jpg")' alt="Banner" class="img-responsive" style="width:100%;" />
-    </div>
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

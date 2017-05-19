@@ -18,7 +18,7 @@ namespace Ecommerce.Controllers
         // GET: Admins
         public ActionResult Index()
         {
-            return View(db.Admins.ToList());
+            return View();
         }
 
         // GET: Admins/Details/5

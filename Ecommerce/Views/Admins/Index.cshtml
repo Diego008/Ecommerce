@@ -1,15 +1,25 @@
 ﻿@model IEnumerable<Ecommerce.Models.Admin>
 
 @{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Estatísticas</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <a href="#" class="thumbnail text-center icons">
+            <i class="fa fa-book fa-5x"></i> 
+            <div class="caption">                
+                <h3>Categorias Cadastradas</h3>                
+            </div>
+        </a>
+    </div>
+</div>
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -42,4 +52,4 @@
     </tr>
 }
 
-</table>
+</table>*@

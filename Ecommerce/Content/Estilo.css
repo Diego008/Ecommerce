@@ -4,6 +4,15 @@
 .margem-top{margin-top:10px;}
 .margem-bottom{margin-bottom:15px;}
 
+/*Admin*/
+
+.icons i{
+    padding:25px;
+    background-color:#5bc0de;
+    border-radius:100%;
+    color:#FFF;
+}
+
 /*menu*/
 
 .navbar-inverse {
