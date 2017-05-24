@@ -18,6 +18,11 @@ namespace Ecommerce.Controllers
         // GET: Admins
         public ActionResult Index()
         {
+            var qntCategorias = db.Categorias.Count();
+            var qntAdministradores = db.Admins.Count();
+
+            ViewBag.Categorias = qntCategorias;
+            ViewBag.Administradores = qntAdministradores;
             return View();
         }
 
