@@ -36,7 +36,7 @@ namespace Ecommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateUser([Bind(Include = "UsuarioID,Nome,Cpf,Rg,Cep,Endereco,Numero,Bairro,Cidade,Contato,Email,Senha,Imagem")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "UsuarioID,Nome,Cpf,Rg,Cep,Endereco,Numero,Bairro,Cidade,Contato,Email,Senha,Imagem")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
