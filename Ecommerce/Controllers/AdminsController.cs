@@ -20,9 +20,11 @@ namespace Ecommerce.Controllers
         {
             var qntCategorias = db.Categorias.Count();
             var qntAdministradores = db.Admins.Count();
+            var qntUsuarios = db.Usuarios.Count();
 
             ViewBag.Categorias = qntCategorias;
             ViewBag.Administradores = qntAdministradores;
+            ViewBag.Usuarios = qntUsuarios;
             return View();
         }
 

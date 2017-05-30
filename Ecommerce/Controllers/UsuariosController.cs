@@ -11,37 +11,39 @@ namespace Ecommerce.Controllers
     public class UsuariosController : Controller
     {
         private Context db = new Context();
+        IList<string> contatos;
         // GET: Usuarios
         public ActionResult Create()
         {
             return View();
         }
-
         
         [HttpPost]
-        public ActionResult SaveContact(string[] contatos)
+        public IList<string> SaveContact(string[] todosContatos)
         {
-            Usuario usuario = new Usuario();
-            if (contatos != null)
-            {
-                foreach (string item in contatos)
-                {
-                    usuario.Contato += item;
-                }
+            contatos = new List<string>(todosContatos.Length);
 
-                RedirectToAction("CreateUser");
+            foreach (string itens in todosContatos)
+            {
+                contatos.Add(itens);
             }
-            return View();
+
+            return contatos;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UsuarioID,Nome,Cpf,Rg,Cep,Endereco,Numero,Bairro,Cidade,Contato,Email,Senha,Imagem")] Usuario usuario)
         {
+            foreach (string item in contatos)
+            {
+                usuario.Contato += item + ", ";
+            }
+
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(usuario);
-                db.SaveChanges();
+                db.SaveChanges();                
                 return RedirectToAction("Create");
             }
 

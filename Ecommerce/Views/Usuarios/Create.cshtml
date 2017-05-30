@@ -10,7 +10,7 @@
 {
 
     @Html.AntiForgeryToken();
-    
+
     <form class="form-horizontal form-event">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -26,12 +26,12 @@
             @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Cpf, htmlAttributes: new { id = "txtCpf", @class = "form-control" })
+                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { id = "txtCpf", @class = "form-control" }})
             </div>
 
             @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Rg, htmlAttributes: new { id = "txtRg", @class = "form-control" })
+                @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { id = "txtRg", @class = "form-control" } })
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Cep, htmlAttributes: new { id = "txtCep", @class = "form-control" })
+                @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { id = "txtCep", @class = "form-control" } })
             </div>
         </div>
 
@@ -47,23 +47,23 @@
             @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3 inputEnd">
-                @Html.TextBoxFor(model => model.Endereco, htmlAttributes: new { id = "txtEnd", @class = "form-control" })
+                @Html.EditorFor(model => model.Endereco, new {htmlAttributes = new { id = "txtEnd", @class = "form-control" } })
             </div>
 
             @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3 inputNum">
-                @Html.TextBoxFor(model => model.Numero, htmlAttributes: new { id = "txtNumero", @class = "form-control" })
+                @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { id = "txtNumero", @class = "form-control" } })
             </div>
         </div>
 
         <div class="row form-group">
             @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Bairro, htmlAttributes: new { id = "txtBairro", @class = "form-control" })
+                @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { id = "txtBairro", @class = "form-control" } })
             </div>
             @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Cidade, htmlAttributes: new { id = "txtCidade", @class = "form-control" })
+                @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { id = "txtCidade", @class = "form-control" } })
             </div>
 
         </div>
@@ -72,7 +72,7 @@
             @Html.LabelFor(model => model.Contato, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.Contato, htmlAttributes: new { id = "txtContato", @class = "form-control" })
+                @Html.EditorFor(model => model.Contato, new { htmlAttributes = new { id = "txtContato", @class = "form-control" } })
             </div>
 
             <div class="col-sm-3">
@@ -97,27 +97,47 @@
         <div class="row form-group form">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email" })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email" } })
             </div>
         </div>
         <div class="row form-group form">
             @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Senha, htmlAttributes: new { id = "txtSenha", @class = "form-control", @type = "password", onkeyup = "checkPassword()" })
+                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { id = "txtSenha", @class = "form-control", @type = "password", onkeyup = "checkPassword()" } })
                 <p><label id="strenghPassword" class="control-label"></label></p>
             </div>
         </div>
 
         <div class="row form-group">
             <label class="control-label col-sm-2 col-sm-offset-1">Selecionar Imagem</label>
-            @Html.TextBoxFor(model => model.Imagem, htmlAttributes: new { @type = "file", id = "txtImagem", @class = "input-file" })
+            @Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @type = "file", id = "txtImagem", @class = "input-file" } })
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-primary" value="Cadastrar" onclick="sendController()">
+                <input type="button" class="btn btn-primary" value="Cadastrar" onclick="openModal()" data-toggle="modal" data-target="#myModal" />
+                @*<input type="submit" class="btn btn-primary" value="Cadastrar">*@
             </div>
         </div>
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Mensagem de Confirmação</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Clique em salvar para confirmar o cadastro</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Salvar">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </form>
 }
 
@@ -170,8 +190,8 @@
         }
     </script>
 
-    <script>
-        function sendController() {
+    <script>        
+        function openModal() {
             var array = new Array();
             var tds = document.getElementsByClassName("contatos");
 
@@ -182,25 +202,28 @@
             //alert(array);
 
             //enviando dados para controller
-            
+
             $.ajax({
                 type: "POST",
                 traditional: true,
                 url: '@Url.Action("SaveContact", "Usuarios")',
                 datatype: "json",
-                data: {contatos: array}
+                data: { todosContatos: array }
             });
 
+            $('#myModal').show('show');
+            
         }
+        
     </script>
 
     <script>
         function checkPassword() {
             var password = document.getElementById("txtSenha").value;
 
-            if(password.length == 0){
+            if (password.length == 0) {
                 document.getElementById("strenghPassword").innerHtml = "";
-            }else if(password.length <= 6){
+            } else if (password.length <= 6) {
                 document.getElementById("strenghPassword").innerHTML = "Senha Fraca";
                 document.getElementById("strenghPassword").className = "label label-danger";
             } else {
