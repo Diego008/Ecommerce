@@ -115,29 +115,11 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="button" class="btn btn-primary" value="Cadastrar" onclick="openModal()" data-toggle="modal" data-target="#myModal" />
+                <input type="submit" class="btn btn-primary" value="Cadastrar" onclick="SaveUser()" />
                 @*<input type="submit" class="btn btn-primary" value="Cadastrar">*@
             </div>
         </div>
-
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Mensagem de Confirmação</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Clique em salvar para confirmar o cadastro</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" value="Salvar">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+       
     </form>
 }
 
@@ -193,27 +175,38 @@
     </script>
 
     <script>        
-        function openModal() {
+        function SaveUser() {
+            var usuario = new Object();
+
+            usuario.Nome = document.getElementById("txtNome").value;
+            usuario.Cpf = document.getElementById("txtCpf").value;
+            usuario.Rg = document.getElementById("txtRg").value;
+            usuario.Cep = document.getElementById("txtCep").value;
+            usuario.Endereco = document.getElementById("txtEnd").value;
+            usuario.Numero = document.getElementById("txtNumero").value;
+            usuario.Bairro = document.getElementById("txtBairro").value;
+            usuario.Cidade = document.getElementById("txtCidade").value;
+
             var array = new Array();
             var tds = document.getElementsByClassName("contatos");
 
             for (var i = 0; i < tds.length; i++) {
-                array.push(tds[i].innerHTML);
-            }
-
-            //alert(array);
+                array.push(tds[i].innerHTML);                
+            }            
+            usuario.Contato = array;
+            usuario.Email = document.getElementById("txtEmail").value;
+            usuario.Senha = document.getElementById("txtSenha").value;
+            //usuario.Imagem = document.getElementById("txtImagem").value;
 
             //enviando dados para controller
 
             $.ajax({
                 type: "POST",
                 traditional: true,
-                url: '@Url.Action("SaveContact", "Usuarios")',
+                url: '@Url.Action("Create", "Usuarios")',
                 datatype: "json",
-                data: { todosContatos: array }
-            });
-
-            $('#myModal').show('show');
+                data: { user: usuario }
+            });            
             
         }
         
