@@ -185,7 +185,7 @@
             usuario.Endereco = document.getElementById("txtEnd").value;
             usuario.Numero = document.getElementById("txtNumero").value;
             usuario.Bairro = document.getElementById("txtBairro").value;
-            usuario.Cidade = document.getElementById("txtCidade").value;
+            usuario.Cidade = document.getElementById("txtCidade").value;            
 
             var array = new Array();
             var tds = document.getElementsByClassName("contatos");
@@ -193,19 +193,19 @@
             for (var i = 0; i < tds.length; i++) {
                 array.push(tds[i].innerHTML);                
             }            
-            usuario.Contato = array;
+            usuario.Contato = array.toString();
             usuario.Email = document.getElementById("txtEmail").value;
             usuario.Senha = document.getElementById("txtSenha").value;
-            //usuario.Imagem = document.getElementById("txtImagem").value;
+            usuario.Imagem = document.getElementById("txtImagem").value;
 
             //enviando dados para controller
-
+            var dataJson = JSON.stringify(usuario);
             $.ajax({
                 type: "POST",
                 traditional: true,
                 url: '@Url.Action("Create", "Usuarios")',
                 datatype: "json",
-                data: { user: usuario }
+                data: { data: dataJson }
             });            
             
         }

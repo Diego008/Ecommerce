@@ -21,11 +21,11 @@ namespace Ecommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string user)
+        public ActionResult Create(Usuario usuario)
         {
-            //string json = JsonConvert.SerializeObject(user);
-
-            Usuario deserializeUsuario = JsonConvert.DeserializeObject<Usuario>(user);
+            string jsonData = JsonConvert.SerializeObject(usuario);
+            
+            Usuario deserializeUsuario = JsonConvert.DeserializeObject<Usuario>(jsonData);
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(deserializeUsuario);
