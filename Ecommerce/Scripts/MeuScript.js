@@ -30,11 +30,11 @@ function mascaraCep() {
     }
 }
 
-function mascaraContato() {
-    var key = event.keyCode;
+function mascaraContato(e) {
+    key = e || window.event;
     var tam = document.getElementById("txtContato").value;
 
-    if (key != 8 && key != 46) {
+    if (key.keyCode != 8 && key.keyCode != 46) {
         if (tam.length == 0) {
             document.getElementById("txtContato").value += "(";
         }
