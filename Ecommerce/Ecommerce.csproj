@@ -153,6 +153,14 @@
     <Compile Include="Migrations\201705200027490_Usuario1.Designer.cs">
       <DependentUpon>201705200027490_Usuario1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706051634391_Usuario2.cs" />
+    <Compile Include="Migrations\201706051634391_Usuario2.Designer.cs">
+      <DependentUpon>201706051634391_Usuario2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706101435515_Usuario3.cs" />
+    <Compile Include="Migrations\201706101435515_Usuario3.Designer.cs">
+      <DependentUpon>201706101435515_Usuario3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Categoria.cs" />
@@ -250,6 +258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705200027490_Usuario1.resx">
       <DependentUpon>201705200027490_Usuario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706051634391_Usuario2.resx">
+      <DependentUpon>201706051634391_Usuario2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706101435515_Usuario3.resx">
+      <DependentUpon>201706101435515_Usuario3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
