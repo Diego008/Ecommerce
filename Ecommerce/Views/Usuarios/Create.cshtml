@@ -6,7 +6,7 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-@using (Html.BeginForm("Create", "Usuarios", FormMethod.Post))
+@using (Html.BeginForm("Create", "Usuarios", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     @Html.AntiForgeryToken();
@@ -19,6 +19,7 @@
 
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { id = "txtNome", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -26,12 +27,14 @@
             @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3">
-                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { id = "txtCpf", @class = "form-control", onkeyup="mascaraCpf()" }})
+                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { id = "txtCpf", @class = "form-control", onkeyup = "mascaraCpf()" } })
+                @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
             </div>
 
             @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3">
-                @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { id = "txtRg", @class = "form-control", onkeyup="mascaraRg()" } })
+                @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { id = "txtRg", @class = "form-control", onkeyup = "mascaraRg()" } })
+                @Html.ValidationMessageFor(model => model.Rg, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -39,7 +42,8 @@
             @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3">
-                @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { id = "txtCep", @class = "form-control", onkeyup="mascaraCep()" } })
+                @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { id = "txtCep", @class = "form-control", onkeyup = "mascaraCep()" } })
+                @Html.ValidationMessageFor(model => model.Cep, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,12 +51,14 @@
             @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
 
             <div class="col-sm-3 inputEnd">
-                @Html.EditorFor(model => model.Endereco, new {htmlAttributes = new { id = "txtEnd", @class = "form-control" } })
+                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { id = "txtEnd", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
             </div>
 
             @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3 inputNum">
                 @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { id = "txtNumero", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -60,10 +66,12 @@
             @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-3">
                 @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { id = "txtBairro", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
             </div>
             @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-sm-1" })
             <div class="col-sm-3">
                 @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { id = "txtCidade", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
             </div>
 
         </div>
@@ -98,20 +106,29 @@
         <div class="row form-group form">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new{ @class = "text-danger"})
             </div>
         </div>
         <div class="row form-group form">
             @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { id = "txtSenha", @class = "form-control", @type = "password", onkeyup = "checkPassword()" } })
+                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
                 <p><label id="strenghPassword" class="control-label"></label></p>
             </div>
         </div>
 
         <div class="row form-group">
-            <label class="control-label col-sm-2 col-sm-offset-1">Selecionar Imagem</label>
-            @Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @type = "file", id = "txtImagem", @class = "input-file" } })
+            @Html.LabelFor(model => model.Imagem, htmlAttributes: new {@class = "control-label col-sm-1 col-sm-offset-1" })
+            @*@Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @type = "file", id = "txtImagem", @class = "input-file" } })*@
+            <input type="file" class="form-control" id="txtImagem" />
+            @if (ViewBag.MessageFoto != null)
+            {
+                <span class="text-danger">
+                    @ViewBag.MessageFoto
+                </span>
+            }
         </div>
 
         <div class="form-group">
@@ -204,8 +221,7 @@
             document.getElementById("txtContato").value = array.toString();
             usuario.Contato = document.getElementById("txtContato").value;
             usuario.Email = document.getElementById("txtEmail").value;
-            usuario.Senha = document.getElementById("txtSenha").value;
-            usuario.Imagem = document.getElementById("txtImagem").value;
+            usuario.Senha = document.getElementById("txtSenha").value;            
                         
             //enviando dados para controller
             var dataJson = JSON.stringify(usuario);
