@@ -107,7 +107,7 @@
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "txtEmail", @class = "form-control", @type = "email", placeholder = "Email", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new{ @class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row form-group form">
@@ -120,9 +120,9 @@
         </div>
 
         <div class="row form-group">
-            @Html.LabelFor(model => model.Imagem, htmlAttributes: new {@class = "control-label col-sm-1 col-sm-offset-1" })
+            @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-sm-1 col-sm-offset-1" })
             @*@Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @type = "file", id = "txtImagem", @class = "input-file" } })*@
-            <input type="file" class="form-control" id="txtImagem" />
+            <input type="file" class="form-control" id="Imagem" name="imagem" />
             @if (ViewBag.MessageFoto != null)
             {
                 <span class="text-danger">
@@ -133,17 +133,16 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-primary" value="Cadastrar" onclick="SaveUser()" />
-                @*<input type="submit" class="btn btn-primary" value="Cadastrar">*@
+                <input type="submit" class="btn btn-primary" value="Cadastrar" id="SaveContact" />                
             </div>
         </div>
-       
+
     </form>
 }
 
-@section scripts{  
-      
-<script src="~/Scripts/MeuScript.js" type="text/javascript"></script>
+@section scripts{
+
+    <script src="~/Scripts/MeuScript.js" type="text/javascript"></script>
     <script>
         var campos = [
             document.querySelector("#txtContato")
@@ -166,7 +165,7 @@
                 campos.forEach(function (campo) {
                     var td = document.createElement('td');
                     td.textContent = campo.value;
-                    td.className = "contatos";                    
+                    td.className = "contatos";
                     tr.appendChild(td);
                 });
 
@@ -182,7 +181,7 @@
 
                 tbody.appendChild(tr);
 
-                campos[0].value = '';                
+                campos[0].value = '';
 
                 btExcluir.onclick = function () {
                     if (!tdCheck.checked) {
@@ -199,42 +198,28 @@
         }
     </script>
 
-    <script>        
-        function SaveUser() {
-            var usuario = new Object();
+    <script>
+        var el = document.querySelector("#SaveContact");
+        if (el) {
+            el.addEventListener('click', function () {
+                var array = new Array();
+                var tds = document.getElementsByClassName("contatos");
 
-            usuario.Nome = document.getElementById("txtNome").value;
-            usuario.Cpf = document.getElementById("txtCpf").value;
-            usuario.Rg = document.getElementById("txtRg").value;
-            usuario.Cep = document.getElementById("txtCep").value;
-            usuario.Endereco = document.getElementById("txtEnd").value;
-            usuario.Numero = document.getElementById("txtNumero").value;
-            usuario.Bairro = document.getElementById("txtBairro").value;
-            usuario.Cidade = document.getElementById("txtCidade").value;            
+                for (var i = 0; i < tds.length; i++) {
+                    array.push(tds[i].innerHTML);
+                }
 
-            var array = new Array();
-            var tds = document.getElementsByClassName("contatos");
+                var dataJson = JSON.stringify(array);
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    url: '@Url.Action("Contatos", "Usuarios")',
+                    datatype: "json",
+                    data: {data: dataJson}
+                });
+            });
+        }        
 
-            for (var i = 0; i < tds.length; i++) {
-                array.push(tds[i].innerHTML);                
-            }
-            document.getElementById("txtContato").value = array.toString();
-            usuario.Contato = document.getElementById("txtContato").value;
-            usuario.Email = document.getElementById("txtEmail").value;
-            usuario.Senha = document.getElementById("txtSenha").value;            
-                        
-            //enviando dados para controller
-            var dataJson = JSON.stringify(usuario);
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                url: '@Url.Action("Create", "Usuarios")',
-                datatype: "json",
-                data: { data: dataJson }
-            });            
-            
-        }
-        
     </script>
 
     <script>

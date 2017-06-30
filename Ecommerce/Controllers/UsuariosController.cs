@@ -19,26 +19,30 @@ namespace Ecommerce.Controllers
             return View();
         }
 
+        public JsonResult Contatos(string dataJson)
+        {
+            JsonResult json = new JsonResult();
+            return json;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario, HttpPostedFileBase foto)
+        public ActionResult Create([Bind(Include = "UsuarioID, Nome, Cpf, Rg, Cep, Endereco, Numero, Bairro, Cidade, Contato, Email, Senha, Imagem")] Usuario usuario, HttpPostedFileBase imagem, string contatos)
         {
-            string jsonData = JsonConvert.SerializeObject(usuario);
-
-            Usuario deserializeUsuario = JsonConvert.DeserializeObject<Usuario>(jsonData);
-
+            
             try
             {
                 string fileName = "";
                 string contentType = "";
-                string path = "";
-                if (foto != null && foto.ContentLength > 0)
+                string path = "";                
+
+                if (imagem != null && imagem.ContentLength > 0)
                 {
-                    fileName = System.IO.Path.GetFileName(foto.FileName);
-                    contentType = foto.ContentType;
+                    fileName = System.IO.Path.GetFileName(imagem.FileName);
+                    contentType = imagem.ContentType;
                     path = System.Configuration.ConfigurationManager.AppSettings["PathFiles"] + "\\Usuarios\\" + fileName;
-                    foto.SaveAs(path);
-                    deserializeUsuario.Imagem = fileName;
+                    imagem.SaveAs(path);
+                    usuario.Imagem = fileName;
                 }
             }
             catch
@@ -48,12 +52,12 @@ namespace Ecommerce.Controllers
             if (ModelState.IsValid)
             {
 
-                db.Usuarios.Add(deserializeUsuario);
+                db.Usuarios.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }
 
-            return View(deserializeUsuario);
+            return View(usuario);
         }
     }
 }
